@@ -11,34 +11,48 @@ if (isset($_GET['id'])) {
 
     ?>
 
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>PHP CMS</title>
-            <link rel="stylesheet" href="assets/style.css">
-        </head>
-        <body>
-            <div class="container">
-                <a href="index.php" id="logo">CMS</a>
+    <?php include('header.php'); ?>
 
-                <h4>
-                    <?php echo $data['article_title']; ?>
-                    - <small>posted <?php echo date('l jS', $data['article_timestamp']); ?></small>
-                </h4>
-                <p><?php echo $data['article_content']; ?></p>
-
-                <a href="index.php">&larr; Back </a>
+        <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+                <h1><?php echo $data['article_title']; ?></h1>
+                <h2 class="subheading">Problems look mighty small from 150 miles up - TO DO!!</h2>
+                <span class="meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on <?php echo date('l jS', $data['article_timestamp']); ?></span>
             </div>
-        </body>
-        </html>
-
-    <?php
-} else {
-    header('Location: index.php');
-    exit();
-}
+            </div>
+        </div>
+        </div>
+    </header>
 
 
+            
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+            <p><?php echo $data['article_content']; ?></p>
+            </div>
+        </div>
+        </div>
+        
+    </article>
+    <hr>
+    
+    
+    <?php include('footer.php'); ?>
+
+<?php
+    } else {
+        header('Location: index.php');
+        exit();
+    }
 ?>
