@@ -17,7 +17,7 @@ if(isset($_SESSION['logged_in'])) {
         </head>
         <body>
             <div class="container">
-                <a href="index.php" id="logo">CMS</a>
+                <a href="../index.php" id="logo">CMS</a>
                 <br><br>
                 <ol>
                     <li><a href="add.php">Add Article</a></li>
@@ -72,7 +72,7 @@ if(isset($_SESSION['logged_in'])) {
         </head>
         <body>
             <div class="container">
-                <a href="index.php" id="logo">CMS</a>
+                <a href="../index.php" id="logo">CMS</a>
                 <br><br>
                 <?php if (isset($error)) { ?>
                     <small><?php echo $error; ?></small>

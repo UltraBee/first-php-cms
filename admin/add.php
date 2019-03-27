@@ -4,8 +4,26 @@ session_start();
 
 include_once('../includes/connection.php');
 
-if(isset($_SESSION['logged_in'])) {
+if (isset($_SESSION['logged_in'])) {
+    if (isset($_POST['title'], $_POST['content'])) {
+        $title = $_POST['title'];
+        $content = nl2br($_POST['content']);
 
+        if (empty($title) or empty($content)) {
+            $error = 'All fields are required! <br><br>';
+        } else {
+            $query = $pdo->prepare('INSERT INTO articles (article_title, article_content, article_timestamp) VALUES (?, ?, ?)');
+
+            $query->bindValue(1, $title);
+            $query->bindValue(2, $content);
+            $query->bindValue(3, time());
+
+            $query->execute();
+
+            header('Location: index.php');
+        }
+    
+    }
     ?>
 
     <html lang="en">
@@ -21,6 +39,11 @@ if(isset($_SESSION['logged_in'])) {
                 <a href="index.php" id="logo">CMS</a>
                 <br><br>
                 <h4>Add Article</h4>
+
+                <?php if (isset($error)) { ?>
+                    <small><?php echo $error; ?></small>
+                <?php } ?>
+
                 <form action="add.php" method="post" autocomplete="off">
                     <input type="text" name="title" placeholder="Title"><br><br>
                     <textarea name="content" cols="50" rows="15"></textarea><br><br>
